@@ -4,11 +4,47 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <transition-group :name="routerTransite">
+      <router-view key="default"/>
+      <router-view key="a" name="a"></router-view>
+      <router-view key="b" name="b"></router-view>
+    </transition-group>
   </div>
 </template>
+<script>
+export default {
+  data(){
+    return{
+      routerTransite:''
+    }
+  },
+  watch:{
+    '$route' (to){
+      to.query && to.query.transitionName && (this.routerTransite = to.query.transitionName)
+    }
+  }
+}
+</script>
 
 <style lang="less">
+.router-enter{//组件进入之前
+  opacity: 0;
+}
+.router-enter-active{//组件进入的时候
+  transition: opacity 1s ease;
+}
+.router-enter-to{//组件进入之后
+  opacity: 1;
+}
+.router-leave{
+  opacity: 1;
+}
+.router-leave-active{
+  transition: opacity 1s ease;
+}
+.router-leave-to{
+  opacity: 0;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

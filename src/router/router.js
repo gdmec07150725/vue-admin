@@ -3,10 +3,19 @@ export default [
   {
     path: '/',
     name: 'home',
-    component: Home,
+    components: {
+      default:Home,
+      a:()=>import ('@/views/email.vue'),
+      b:()=>import ('@/views/tel.vue')
+    },
     props: route => ({
       food: route.query.food
-    })
+    }),
+    beforeEnter:(to,from,next)=>{
+      if(from.name === 'login') console.log('这是从登陆页进来的')
+      else console.log('这不是从登录页进来的');
+      next();
+    }
   },
   {
     path: '/login',
@@ -22,6 +31,9 @@ export default [
     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
     props: {
       food: 'banana'
+    },
+    meta:{
+      title:'关于'
     }
   },
   {

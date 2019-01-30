@@ -11,6 +11,11 @@ export default {
       type: String,
       default: 'LN',
     }
-  }
+  },
+  beforeRouteUpdate(to,from,next){
+    //可以访问this
+    console.log(to.name,from.name)
+    next();
+  } 
 }
 </script>
