@@ -1,14 +1,19 @@
 <template>
   <div>
-    我是手机号码页面
+    {{message}}
   </div>
 </template>
 <script>
 export default {
   data(){
     return{
-      
+      message:''
     }
+  },
+  mounted () {
+    this.$bus.$on('sendMsg',msg=>{
+      this.message = msg;
+    })
   }
 }
 </script>

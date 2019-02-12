@@ -4,17 +4,17 @@ export default [
     path: '/',
     name: 'home',
     components: {
-      default:Home,
-      a:()=>import ('@/views/email.vue'),
-      b:()=>import ('@/views/tel.vue')
+      default: Home,
+      a: () => import('@/views/email.vue'),
+      b: () => import('@/views/tel.vue')
     },
     props: route => ({
       food: route.query.food
     }),
-    beforeEnter:(to,from,next)=>{
-      if(from.name === 'login') console.log('这是从登陆页进来的')
-      else console.log('这不是从登录页进来的');
-      next();
+    beforeEnter: (to, from, next) => {
+      if (from.name === 'login') console.log('这是从登陆页进来的')
+      else console.log('这不是从登录页进来的')
+      next()
     }
   },
   {
@@ -32,8 +32,8 @@ export default [
     props: {
       food: 'banana'
     },
-    meta:{
-      title:'关于'
+    meta: {
+      title: '关于'
     }
   },
   {
@@ -41,6 +41,11 @@ export default [
     name: 'argu',
     component: () => import('@/views/argu.vue'),
     props: true
+  },
+  {
+    path: '/store',
+    name: 'store',
+    component: () => import('@/views/store.vue'),
   },
   {
     path: '*',
