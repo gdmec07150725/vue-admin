@@ -7,13 +7,18 @@ const getters = {
   }
 }
 const mutations = {
-  //
+  SET_USER_NAME (state, params) {
+    state.userName = params
+  }
 }
 const actions = {
-  //
+  updateUserName({ commit, state, rootState, dispatch }){
+    // rootState.appName
+    //dispatch可以触发当前user module中actions里面定义的其他方法
+  }
 }
 export default {
-  namespaced: true,
+  // namespaced: true,
   getters,
   state,
   mutations,
