@@ -1,5 +1,7 @@
 <template>
   <div>
+    <input type="text" v-model="stateValue" /> <br/>
+    Your input is {{stateValue}} <br/>
     This app name is {{appName}}!
     <p>Hello {{userName}}</p>
     <!-- <p>The version is {{appNameWithVersion}}</p> -->
@@ -52,13 +54,21 @@ export default{
     // ...mapGetters('user',[//3.获取指定module的getters
     //   'firstLetter'
     // ])
-
-    //触发mutation说的更新：1.提交一个commit 2.触发dispatch
+    stateValue: {
+      get () {
+        return this.$store.state.stateValue
+      },
+      set (value) {
+        this.setStateValue(value)
+      }
+    }
+    //触发mutation的的更新：1.提交一个commit 2.触发dispatch
   },
   methods:{
     ...mapMutations([
       'CHANGE_APP_NAME',
-      'SET_USER_NAME'
+      'SET_USER_NAME',
+      'SET_STATE_VALUE'
     ]),
     ...mapActions([
       'updateAppName'
@@ -67,12 +77,12 @@ export default{
       //同步操作使用commit
       // 1.使用字符串方式
       // this.$store.commit('changeAppName','newAppName');
+      this.$store.commit('VERSION','3.0')
       // 2.使用对象的方式
       // this.$store.commit({
       //   type:'changeAppName',
       //   appName:'newAppName'
       // })
-      this.$store.commit('VERSION','3.0')
       //3.使用mapMutations
       // this.CHANGE_APP_NAME({
       //   appName:'newAppName'
@@ -105,6 +115,9 @@ export default{
 
         },
       })
+    },
+    setStateValue(value){
+      this.SET_STATE_VALUE(value)
     }
   }
 }
