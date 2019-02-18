@@ -3,14 +3,14 @@
     {{food}}
     <img alt="Vue logo" src="@/assets/img/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-
+    <button @click="getInfo">获取数据</button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-
+import { getUserInfo } from '@/api/user' 
 export default {
   name: 'home',
   props: {
@@ -33,6 +33,13 @@ export default {
   // },
   components: {
     HelloWorld
+  },
+  methods:{
+    getInfo () {
+      getUserInfo({ userId: 123 }).then(res=> {
+        console.log('res',res);
+      })
+    }
   }
 }
 </script>
