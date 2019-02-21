@@ -37,7 +37,7 @@ export default {
   methods:{
     getInfo () {
       getUserInfo({ userId: 123 }).then(res=> {
-        console.log('res',res);
+        console.log('res',res.data);
       })
     }
   }
