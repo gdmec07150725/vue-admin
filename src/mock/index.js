@@ -1,6 +1,14 @@
 import Mock from 'mockjs'
 import { getUserInfo } from './response/user'
 
+const Random = Mock.Random 
+//自定义方法
+Random.extend({
+  fruit () {
+    const fruit = ['apple', 'banana', 'lemon']
+    return this.pick(fruit)
+  }
+})
 // Mock.mock('http://localhost:3000/getUserInfo', getUserInfo)
 // Mock.mock(/\/getUserInfo/, getUserInfo)
 Mock.mock(/\/getUserInfo/, 'post', getUserInfo)

@@ -28,14 +28,25 @@ export const getUserInfo = (options) => {
     },
     'reg': /[1-9] [a-z]/,
     'email': Random.email(),//生成email格式的字符串
-    'eamil2': Mock.mock('@email'),//使用占位符生成email格式的字符串
+    'email2': Mock.mock('@email'),//使用占位符生成email格式的字符串
     'rang': Random.range(3, 10, 2), //返回以一个数组,以3位开始值，步长位2，小于10
     'date': Random.date('yyyy-MM-dd'),
     'time': Random.time('HH:mm'),
     'datetime': Random.datetime('yyyy-MM-dd HH:mm'),
     'now': Random.now('hour', 'yyyy-MM-dd HH:mm'),//截止到当前时间的小时位
-    'img': Random.image('125x125', '00ff00', '#ff0000', 'png', 'langNan'),
-
+    'img': Random.image('125x125', '00ff00', '#ff0000', 'png', 'langNan'),//返回图片URL
+    'color': Random.color(),//返回颜色值
+    'cword': Random.cword('辽南很帅啊啊',3, 6), //从字符串中随机取3到6个字符
+    'cname': Random.cname(),//返回中国人名
+    'email3': Random.email('langNan.com'), //返回email XXXXX@langNan.com
+    'region': Random.region(),//返回大区（华南）
+    'province': Random.province(),//返回省份
+    'city': Random.city(true),//返回市的上一级和本级
+    'county': Random.county(true),//返回县的上两级和本级
+    'capitalize': Random.capitalize('langNan'), //首字符大写
+    'pick': Random.pick([1,2,3,4]),//随机返回数组中的一个值
+    'shuffle': Random.shuffle([1,2,3,4]), //打乱数组顺序
+    'fruit': Random.fruit()
   }
   // let i = 3;
   // let arr = []
