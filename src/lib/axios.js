@@ -10,7 +10,7 @@ class HttpRequest {
    getInsideConfig () {
      const config = {
       //基础参数
-      baseUrl: this.baseUrl,
+      baseURL: this.baseUrl,//URL小写了，坑
       headers: {
 
       }
