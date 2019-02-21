@@ -28,7 +28,14 @@ export const getUserInfo = (options) => {
     },
     'reg': /[1-9] [a-z]/,
     'email': Random.email(),//生成email格式的字符串
-    // 'eamil2': Mock.mock(@email)
+    'eamil2': Mock.mock('@email'),//使用占位符生成email格式的字符串
+    'rang': Random.range(3, 10, 2), //返回以一个数组,以3位开始值，步长位2，小于10
+    'date': Random.date('yyyy-MM-dd'),
+    'time': Random.time('HH:mm'),
+    'datetime': Random.datetime('yyyy-MM-dd HH:mm'),
+    'now': Random.now('hour', 'yyyy-MM-dd HH:mm'),//截止到当前时间的小时位
+    'img': Random.image('125x125', '00ff00', '#ff0000', 'png', 'langNan'),
+
   }
   // let i = 3;
   // let arr = []

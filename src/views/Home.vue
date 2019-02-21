@@ -4,6 +4,8 @@
     <img alt="Vue logo" src="@/assets/img/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button @click="getInfo">获取数据</button>
+    <br>
+    <img :src="url">
   </div>
 </template>
 
@@ -17,6 +19,11 @@ export default {
     food:{
       type:String,
       default:'purple'
+    }
+  },
+  data(){
+    return{
+      url: ''
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -38,6 +45,7 @@ export default {
     getInfo () {
       getUserInfo({ userId: 123 }).then(res=> {
         console.log('res',res.data);
+        this.url = res.data && res.data.img
       })
     }
   }
