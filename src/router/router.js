@@ -43,9 +43,14 @@ export default [
     props: true
   },
   {
+    path: '/count-to',
+    name: 'count_to',
+    component: () => import('@/views/count-to.vue')
+  },
+  {
     path: '/store',
     name: 'store',
-    component: () => import('@/views/store.vue'),
+    component: () => import('@/views/store.vue')
   },
   {
     path: '*',

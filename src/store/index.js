@@ -9,7 +9,7 @@ import saveInLocal from './plugin/saveInLocal'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  strict:  process.env.NODE_ENV === 'development', //开发模式下使用严格模式
+  strict: process.env.NODE_ENV === 'development', //开发模式下使用严格模式
   state,
   getters,
   mutations,
