@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
-    <transition-group :name="routerTransite">
+    </div> -->
+    <!-- <transition-group :name="routerTransite"> -->
       <router-view key="default"/>
       <router-view key="a" name="a"></router-view>
       <router-view key="b" name="b"></router-view>
-    </transition-group>
+    <!-- </transition-group> -->
   </div>
 </template>
 <script>
@@ -27,6 +27,12 @@ export default {
 </script>
 
 <style lang="less">
+html,body{
+  height: 100%
+}
+body{
+  margin: 0;
+}
 .router-enter{//组件进入之前
   opacity: 0;
 }
@@ -50,6 +56,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  height: 100%;
 }
 #nav {
   padding: 30px;

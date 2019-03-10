@@ -1,21 +1,29 @@
 import Home from '@/views/Home.vue'
+import Layout from '@/views/layout.vue'
 export default [
   {
     path: '/',
     name: 'home',
-    components: {
-      default: Home,
-      a: () => import('@/views/email.vue'),
-      b: () => import('@/views/tel.vue')
-    },
-    props: route => ({
-      food: route.query.food
-    }),
-    beforeEnter: (to, from, next) => {
-      if (from.name === 'login') console.log('这是从登陆页进来的')
-      else console.log('这不是从登录页进来的')
-      next()
-    }
+    // components: {
+    //   default: Home,
+    //   a: () => import('@/views/email.vue'),
+    //   b: () => import('@/views/tel.vue')
+    // },
+    // props: route => ({
+    //   food: route.query.food
+    // }),
+    // beforeEnter: (to, from, next) => {
+    //   if (from.name === 'login') console.log('这是从登陆页进来的')
+    //   else console.log('这不是从登录页进来的')
+    //   next()
+    // }
+    component: Layout,
+    children: [
+      {
+        path: 'gird',
+        component: () => import('@/views/grid.vue')
+      }
+    ]
   },
   {
     path: '/login',
