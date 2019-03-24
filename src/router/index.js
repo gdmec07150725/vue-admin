@@ -21,20 +21,20 @@ router.beforeEach((to, from, next) => {
   //   else next()
   // }
   const token = getToken()
-  if(token){
+  if (token) {
     //判断token是否有效
     store.dispatch('authorization', token).then(() => {
-      if(to.name === 'login') next({name: 'home'})
+      if (to.name === 'login') next({ name: 'home' })
       else next()
     }).catch(() => {
       setToken('')
-      next({name: 'login'})
+      next({ name: 'login' })
     })
-  }else{
-    if(to.name === 'login'){
+  } else {
+    if (to.name === 'login') {
       next()
-    }else{
-      next({name: 'login'})
+    } else {
+      next({ name: 'login' })
     }
   }
 })
