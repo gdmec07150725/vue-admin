@@ -22,6 +22,10 @@ export default [
       {
         path: 'gird',
         component: () => import('@/views/grid.vue')
+      },
+      {
+        path: 'table',
+        component: () => import('@/views/table.vue')
       }
     ]
   },
