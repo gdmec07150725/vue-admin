@@ -1,8 +1,9 @@
 import Cookies from 'js-cookie'
 import clonedeep from 'clonedeep'
+import vue from 'vue'
 
 export const setTitle = (title) => {
-  window.document.title = title || 'admin';
+  window.document.title = title || 'admin'
 }
 
 export const setToken = (token, tokenName = 'token') => {
@@ -52,4 +53,30 @@ export const transferFolderToTree = folderList => {
     return arr
   }
   return handle(0)
+}
+
+// 添加expand
+export const expandSpecifiedFolder = (folderTree, id) => {
+  return folderTree.map(item => {
+    if (item.type === 'folder') {
+      if (item.id === id) {
+        vue.set(item, 'expand', true)
+        // item.expand = true
+      } else {
+        if (item.children && item.children.length) {
+          item.children = expandSpecifiedFolder(item.children, id)
+          if (item.children.some(child => {
+            return child.expand === true
+          })) {
+            vue.set(item, 'expand', true)
+            // item.expand = true
+          } else {
+            vue.set(item, 'expand', false)
+            // item.expand = false
+          }
+        }
+      }
+    }
+    return item
+  })
 }
