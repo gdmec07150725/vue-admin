@@ -30,6 +30,10 @@ export default [
       {
         path: 'folder_tree',
         component: () => import('@/views/folder-tree/folder-tree.vue')
+      },
+      {
+        path: 'form',
+        component: () => import('@/views/form.vue')
       }
     ]
   },

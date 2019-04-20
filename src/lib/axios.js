@@ -36,7 +36,7 @@ class HttpRequest {
       const { data } = res
       return  data 
     },error=> {
-      return Promise.reject(error)
+      return Promise.reject(error.response.data)
     })
    }
 
