@@ -1,6 +1,6 @@
 import Home from '@/views/Home.vue'
 import Layout from '@/views/layout.vue'
-export default [
+export const routerMap = [
   {
     path: '/',
     name: 'home',
@@ -21,26 +21,30 @@ export default [
     children: [
       {
         path: 'gird',
+        name: 'gird',
         component: () => import('@/views/grid.vue')
       },
       {
         path: 'table',
+        name: 'table',
         component: () => import('@/views/table.vue')
       },
       {
         path: 'folder_tree',
+        name: 'folder_tree',
         component: () => import('@/views/folder-tree/folder-tree.vue')
       },
       {
         path: 'form',
+        name: 'form',
         component: () => import('@/views/form.vue')
+      },
+      {
+        path: 'icon',
+        name: 'icon',
+        component: () => import('@/views/icon.vue')
       }
     ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/login.vue')
   },
   {
     path: '/about',
@@ -86,6 +90,14 @@ export default [
     path: '/store',
     name: 'store',
     component: () => import('@/views/store.vue')
+  }
+]
+
+export const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login.vue')
   },
   {
     path: '*',

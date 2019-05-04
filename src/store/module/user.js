@@ -1,7 +1,8 @@
 import { login, authorization } from '@/api/user'
 import { setToken } from '@/lib/util'
 const state = {
-  userName: 'LN'
+  userName: 'LN',
+  rules: {}
 }
 const getters = {
   firstLetter: (state) => {
@@ -11,14 +12,17 @@ const getters = {
 const mutations = {
   SET_USER_NAME (state, params) {
     state.userName = params
+  },
+  SET_RULES (state, rules) {
+    state.rules = rules
   }
 }
 const actions = {
-  updateUserName({ commit, state, rootState, dispatch }){
+  updateUserName ({ commit, state, rootState, dispatch }) {
     // rootState.appName
-    //dispatch可以触发当前user module中actions里面定义的其他方法
+    // dispatch可以触发当前user module中actions里面定义的其他方法
   },
-  login ({ commit }, {userName, password}) {
+  login ({ commit }, { userName, password }) {
     return new Promise((resolve, reject) => {
       login({ userName, password }).then(res => {
         if (res.code === 200 && res.data.token) {
@@ -34,14 +38,15 @@ const actions = {
   },
   authorization ({ commit }, token) {
     return new Promise((resolve, reject) => {
-      authorization().then(res=>{
-        if(parseInt(res.code) === 401){
+      authorization().then(res => {
+        if (parseInt(res.code) === 401) {
           reject(new Error('token err'))
         } else {
           setToken(res.data.token)
-          resolve()
+          resolve(res.data.rules.page)
+          commit('SET_RULES', res.data.rules.component)
         }
-      }).catch(error=>{
+      }).catch(error => {
         reject(error)
       })
     })
