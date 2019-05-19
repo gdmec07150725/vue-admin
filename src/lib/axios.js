@@ -20,22 +20,22 @@ class HttpRequest {
 
    interceptors (instance, url) {
     instance.interceptors.request.use(config=> {
-      //添加全局loading
+      // 添加全局loading
       if(!Object.keys(this.queue).length) {
-        //Spin.show()
+        // Spin.show()
       }
       this.queue[url] = true
       config.headers['Authorization'] = getToken()
       return config
-    },error=> {
+    }, error => {
       return Promise.reject(error)
     })
     instance.interceptors.response.use(res=> {
-      //在queue队列中清除请求完成的url
+      // 在queue队列中清除请求完成的url
       delete this.queue[url]
       const { data } = res
       return  data 
-    },error=> {
+    }, error => {
       return Promise.reject(error.response.data)
     })
    }
@@ -43,7 +43,7 @@ class HttpRequest {
    request (options) {
     const instance = axios.create()
     options = Object.assign(this.getInsideConfig(), options)
-    this.interceptors(instance, options.url)//添加拦截器
+    this.interceptors(instance, options.url)// 添加拦截器
     return instance(options)
    }
 }

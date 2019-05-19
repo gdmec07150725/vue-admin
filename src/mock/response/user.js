@@ -53,5 +53,36 @@ export const getUserInfo = (options) => {
   // while (i--) {
   //   arr.push(template)
   // }
-  return Mock.mock(template)//返回一个模板
+  return Mock.mock(template)// 返回一个模板
+}
+
+// 模拟后端返回的权限数据, 路由的name作为key
+export const authorization = () => {
+  return {
+    code: 200,
+    data: {
+      token: 'XXX',
+      rules: {
+        page: {
+          home: true,
+          gird: true,
+          about: true,
+          argu: true,
+          count_to: true,
+          menu_page: true,
+          form: true,
+          folder_tree: true,
+          table: true,
+          render_page: true,
+          split_pane: true,
+          store: true
+        },
+        component: { // 组件级别的权限
+          edit_button: true,
+          publish_button: false
+        }
+      }
+    },
+    mes: ''
+  }
 }

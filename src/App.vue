@@ -19,7 +19,7 @@ export default {
     }
   },
   watch:{
-    '$route' (to){
+    '$route' (to) {
       to.query && to.query.transitionName && (this.routerTransite = to.query.transitionName)
     }
   }
@@ -68,4 +68,25 @@ body{
     }
   }
 }
+@font-face {
+  font-family: 'iconfont';
+  src: url('./assets/font/iconfont.eot');
+  src: url('./assets/font/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('./assets/font/iconfont.woff') format('woff'),
+  url('./assets/font/iconfont.ttf') format('truetype'),
+  url('./assets/font/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:16px;font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+  }
+ .icon { // 使用symbol方式需要定义
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  }
 </style>

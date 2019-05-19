@@ -3,15 +3,21 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Bus from './lib/bus'
-import CountTo from '_c/count-to'
-import iView  from 'iview'
+// import CountTo from '_c/count-to'
+import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import '@/assets/font/iconfont.js' // 使用Symbol的方式需要引入
+import '@/assets/font/iconfont.css'// 使用font-class的方式需要引入
+import IconFont from '_c/icon-font'
+import IconSvg from '_c/icon-svg'
 
-Vue.use(iView);
-if (process.env.NODE_ENV !== 'production') require('./mock')//不是生产环境的时候，使用mock
+Vue.use(iView)
+if (process.env.NODE_ENV !== 'production') require('./mock')// 不是生产环境的时候，使用mock
 
 Vue.config.productionTip = false
 Vue.prototype.$bus = Bus
+Vue.component('icon-font', IconFont)
+Vue.component('icon-svg', IconSvg)
 
 const handleClick = event => {
   console.log(event)
