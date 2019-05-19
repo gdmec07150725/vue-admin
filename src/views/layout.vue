@@ -1,17 +1,24 @@
 <template>
   <div class="layout-wrapper">
     <Layout class="layout-outer">
-      <Sider collapsible hide-trigger breakpoint="sm" v-model="collapsed">
-        <side-menu :collapsed="collapsed" :list="menuList"></side-menu>
+      <Sider collapsible hide-trigger breakpoint="sm" v-model="collapsed" class="sider-outer">
+        <side-menu :collapsed="collapsed" :list="routers"></side-menu>
       </Sider>
       <Layout>
         <Header class="header-wrapper">
           <Icon :class="triggerClasses" @click.native="handleCollapsed" type="md-menu" :size="32"></Icon>
         </Header>
         <Content class="content-con">
-          <Card shadow class="page-card">
-            <router-view />
-          </Card>
+          <div>
+            <Tabs type="card" @on-click="handleClickTab" :value="getTabNameByRoute($route)">
+              <TabPane :label="labelRender(item)" :name="getTabNameByRoute(item)" v-for="(item, index) in tabList" :key="`tabNav${index}`"></TabPane>
+            </Tabs>
+          </div>
+          <div class="view-box">
+            <Card shadow class="page-card">
+              <router-view />
+            </Card>
+          </div>
         </Content>
       </Layout>
     </Layout>
@@ -19,6 +26,8 @@
 </template>
 <script>
 import SideMenu from '_c/side-menu'
+import { mapState, mapActions } from 'vuex'
+import { getTabNameByRoute, getRouteById } from '@/lib/util'
 export default {
   name: 'layout',
   components:{
@@ -27,6 +36,7 @@ export default {
   data () {
     return {
       collapsed: false,
+      getTabNameByRoute,
       menuList: [
         {
           title: '1',
@@ -76,11 +86,45 @@ export default {
         'trigger-icon',
         this.collapsed ? 'rotate' : ''
       ]
-    }
+    },
+    ...mapState({
+      tabList: state => state.tabNav.tabList,
+      routers: state => state.router.routers.filter(item => {
+        return item.path !== '*' && item.name !== 'login'
+      })
+    })
   },
   methods: {
+    ...mapActions([
+      'handleRemove'
+    ]),
     handleCollapsed () {
+      console.log('触发了');
       this.collapsed = !this.collapsed
+    },
+    handleClickTab (id) {
+      let route = getRouteById(id)
+      console.log(route)
+      this.$router.push(route)
+    },
+    handleTabRemove (id, event) {
+      event.stopPropagation();
+      this.handleRemove({
+        id,
+        $route : this.$route
+      }).then((nextRoute) => {
+        this.$router.push(nextRoute)
+      })
+    },
+    labelRender (item) {
+      return h => {
+        return (
+          <div>
+            <span>{item.meta.title}</span>
+            <icon nativeOn-click={this.handleTabRemove.bind(this, getTabNameByRoute(item))} type="md-close-circle" style="line-height: 14px; margin-left: 5px"></icon>
+          </div>
+        )
+      }
     }
   }
 }
@@ -102,8 +146,23 @@ export default {
       }
     }
   }
+  .sider-outer { // 有滚动效果
+    height: 100%;
+    overflow: hidden;
+    .ivu-layout-sider-children {
+      margin-right: -20px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+  }
   .content-con{
-    padding: 10px;
+    padding: 0;
+    .ivu-tabs-bar{
+      margin-bottom: 0;
+    }
+    .view-box{
+      padding: 0;
+    }
     .page-card{
       min-height: ~"calc(100vh - 84px)";
     }

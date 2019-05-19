@@ -4,6 +4,7 @@
     <edit-table :columns="columns_single" v-model="tableData_single" @on-edit="handleEditSingle"></edit-table>
     <span class="title">多个编辑</span>
     <edit-table-mul :columns="columns" v-model="tableData" @on-edit="handleEdit"></edit-table-mul>
+    <Button @click="turnTo">打开参数页</Button>
   </div>
 </template>
 
@@ -40,6 +41,15 @@ export default {
     })
   },
   methods: {
+    turnTo () {
+      let id = 'params' + (Math.random() * 100).toFixed(0)
+      this.$router.push({
+        name: 'param',
+        params: {
+          id
+        }
+      })
+    },
     handleEdit ({row, index, column, newValue}) {
       console.log({row, index, column, newValue})
     },

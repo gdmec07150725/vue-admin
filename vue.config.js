@@ -12,9 +12,9 @@ module.exports = {
       .set('@', resolve('src'))
       .set('_c', resolve('src/components'))
   },
-  //打包时不生成.map文件(加快打包的速度)
+  // 打包时不生成.map文件(加快打包的速度)
   productionSourceMap: false,
-  //解决跨域问题
+  // 解决跨域问题
   devServer: {
     proxy: 'http://localhost:3000'
   }

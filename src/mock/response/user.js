@@ -21,9 +21,9 @@ export const getUserInfo = (options) => {
       b: 'bb',
       c: 'cc'
     },
-    'arr|2-4': ['1','2','3'], //重复数组的值2到4次
-    'arr2|2': ['langNan','lison'], //重复指定的次数
-    'func': ()=> {
+    'arr|2-4': ['1', '2', '3'], //重复数组的值2到4次
+    'arr2|2': ['langNan', 'lison'], //重复指定的次数
+    'func': () => {
       return 'this is a create function'
     },
     'reg': /[1-9] [a-z]/,
@@ -36,7 +36,7 @@ export const getUserInfo = (options) => {
     'now': Random.now('hour', 'yyyy-MM-dd HH:mm'),//截止到当前时间的小时位
     'img': Random.image('125x125', '00ff00', '#ff0000', 'png', 'langNan'),//返回图片URL
     'color': Random.color(),//返回颜色值
-    'cword': Random.cword('辽南很帅啊啊',3, 6), //从字符串中随机取3到6个字符
+    'cword': Random.cword('辽南很帅啊啊', 3, 6), //从字符串中随机取3到6个字符
     'cname': Random.cname(),//返回中国人名
     'email3': Random.email('langNan.com'), //返回email XXXXX@langNan.com
     'region': Random.region(),//返回大区（华南）
@@ -44,8 +44,8 @@ export const getUserInfo = (options) => {
     'city': Random.city(true),//返回市的上一级和本级
     'county': Random.county(true),//返回县的上两级和本级
     'capitalize': Random.capitalize('langNan'), //首字符大写
-    'pick': Random.pick([1,2,3,4]),//随机返回数组中的一个值
-    'shuffle': Random.shuffle([1,2,3,4]), //打乱数组顺序
+    'pick': Random.pick([1, 2, 3, 4]),//随机返回数组中的一个值
+    'shuffle': Random.shuffle([1, 2, 3, 4]), //打乱数组顺序
     'fruit': Random.fruit()
   }
   // let i = 3;
@@ -65,9 +65,11 @@ export const authorization = () => {
       rules: {
         page: {
           home: true,
+          effect: true,
+          display: true,
           gird: true,
           about: true,
-          argu: true,
+          param: true,
           count_to: true,
           menu_page: true,
           form: true,

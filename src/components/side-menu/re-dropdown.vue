@@ -2,15 +2,15 @@
   <Dropdown placement="right-start" @on-click="handleClick">
     <span class="drop-menu-span" :style="titleStyle">
       <Icon :type="parent.icon" size="20" :color="iconColor"></Icon>
-      <span v-if="showTitle">{{parent.title}}</span>
+      <span v-if="showTitle">{{parent.meta.title}}</span>
     </span>
     <DropdownMenu slot="list">
       <template v-for="item in parent.children">
         <re-dropdown v-if="item.children" :key="`drop_${item.name}`" :parent="item"></re-dropdown>
         <DropdownItem v-else :key="`drop_${item.name}`" :name="item.name">
           <Icon :type="item.icon" size="20" color="#2c3e50"></Icon>
-          {{item.title}}
-          </DropdownItem>
+          {{item.meta.title}}
+        </DropdownItem>
       </template>
     </DropdownMenu>
   </Dropdown>

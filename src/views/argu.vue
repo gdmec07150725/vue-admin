@@ -1,15 +1,15 @@
 <template>
   <div>
-    {{name}}
+    {{id}}
   </div>
 </template>
 <<script>
 export default {
   name:'argu',
   props:{
-    name:{
+    id:{
       type: String,
-      default: 'LN',
+      default: '123',
     }
   },
   beforeRouteUpdate(to,from,next){
